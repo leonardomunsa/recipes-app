@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import App from '../App';
 
-import mockFetch from '../../cypress/mocks/fetch';
+import mockFetch from '../../cypress/my_mocks/fetch';
 import renderWithRouterAndStore from './renderWithRouterAndStore';
 
 const RECIPES_LENGTH = 12;

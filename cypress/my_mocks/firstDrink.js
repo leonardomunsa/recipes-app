@@ -1,4 +1,3 @@
-/* eslint-disable */
 const firstDrink = {
   drinks: [
     {
@@ -16,9 +15,13 @@ const firstDrink = {
       strIBA: null,
       strAlcoholic: 'Optional alcohol',
       strGlass: 'Collins Glass',
-      strInstructions: 'Pour the Galliano liqueur over ice. Fill the remainder of the glass with ginger ale and thats all there is to it. You now have a your very own GG.',
+      strInstructions: 'Pour the Galliano liqueur over ice. '
+        + 'Fill the remainder of the glass with ginger ale and thats all '
+        + 'there is to it. You now have a your very own GG.',
       strInstructionsES: null,
-      strInstructionsDE: 'Den Galliano-Likör über Eis gießen. Füllen Sie den Rest des Glases mit Ginger Ale und das ist alles, was dazu gehört. Du hast jetzt ein eigenes GG.',
+      strInstructionsDE: 'Den Galliano-Likör über Eis gießen. '
+        + 'Füllen Sie den Rest des Glases mit Ginger Ale und das ist alles, '
+        + 'was dazu gehört. Du hast jetzt ein eigenes GG.',
       strInstructionsFR: null,
       'strInstructionsZH-HANS': null,
       'strInstructionsZH-HANT': null,
