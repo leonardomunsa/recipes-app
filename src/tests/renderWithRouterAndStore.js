@@ -8,12 +8,12 @@ import { render } from '@testing-library/react';
 
 import reducers from '../redux/reducers';
 
-import { saveState } from '../utils/localStorageRedux';
+import { loadState, saveState } from '../utils/localStorageRedux';
 
 export const getStore = (initialState) => {
   const store = initialState
     ? createStore(reducers, initialState, applyMiddleware(thunk))
-    : createStore(reducers, applyMiddleware(thunk));
+    : createStore(reducers, loadState(), applyMiddleware(thunk));
 
   store.subscribe(() => {
     saveState(store.getState());

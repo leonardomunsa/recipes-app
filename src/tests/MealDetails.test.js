@@ -49,13 +49,11 @@ describe('Testa tela de detalhes de uma receita', () => {
 
     const favoriteButton = await screen.findByTestId('favorite-btn');
 
-    expect(favoriteButton.src).toMatch(/whiteHeart/);
-
-    userEvent.click(favoriteButton);
-
     expect(favoriteButton.src).toMatch(/blackHeart/);
 
     userEvent.click(favoriteButton);
+
+    expect(favoriteButton.src).toMatch(/whiteHeart/);
 
     history.push('/receitas-favoritas');
 
