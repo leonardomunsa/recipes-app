@@ -34,9 +34,7 @@ describe('Testa funcionalidades da searchbar', () => {
   });
 
   it('deve ser possível pesquisar comidas por ingredientes', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/comidas');
+    renderWithRouterAndStore(<App />, { route: '/comidas' });
 
     const searchButton = await screen.findByTestId(SEARCH_BUTTON_TESTID);
 
@@ -56,9 +54,7 @@ describe('Testa funcionalidades da searchbar', () => {
   });
 
   it('deve ser possível pesquisar comidas pelo nome', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/comidas');
+    renderWithRouterAndStore(<App />, { route: '/comidas' });
 
     const searchButton = await screen.findByTestId(SEARCH_BUTTON_TESTID);
 
@@ -78,9 +74,7 @@ describe('Testa funcionalidades da searchbar', () => {
   });
 
   it('deve ser possível pesquisar comidas pela primeira letra', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/comidas');
+    renderWithRouterAndStore(<App />, { route: '/comidas' });
 
     const searchButton = await screen.findByTestId(SEARCH_BUTTON_TESTID);
 
@@ -100,9 +94,7 @@ describe('Testa funcionalidades da searchbar', () => {
   });
 
   it('deve ser possível pesquisar bebidas por ingredientes', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/bebidas');
+    renderWithRouterAndStore(<App />, { route: '/bebidas' });
 
     const searchButton = await screen.findByTestId(SEARCH_BUTTON_TESTID);
 
@@ -122,9 +114,7 @@ describe('Testa funcionalidades da searchbar', () => {
   });
 
   it('deve ser possível pesquisar bebidas pelo nome', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/bebidas');
+    renderWithRouterAndStore(<App />, { route: '/bebidas' });
 
     const searchButton = await screen.findByTestId(SEARCH_BUTTON_TESTID);
 
@@ -144,9 +134,7 @@ describe('Testa funcionalidades da searchbar', () => {
   });
 
   it('deve ser possível pesquisar bebidas pela primeira letra', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/bebidas');
+    renderWithRouterAndStore(<App />, { route: '/bebidas' });
 
     const searchButton = await screen.findByTestId(SEARCH_BUTTON_TESTID);
 

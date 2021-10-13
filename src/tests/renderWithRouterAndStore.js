@@ -8,12 +8,25 @@ import { render } from '@testing-library/react';
 
 import reducers from '../redux/reducers';
 
+import { saveState } from '../utils/localStorageRedux';
+
 export const getStore = (initialState) => {
-  if (!initialState) return createStore(reducers, applyMiddleware(thunk));
-  return createStore(reducers, initialState, applyMiddleware(thunk));
+  const store = initialState
+    ? createStore(reducers, initialState, applyMiddleware(thunk))
+    : createStore(reducers, applyMiddleware(thunk));
+
+  store.subscribe(() => {
+    saveState(store.getState());
+  });
+
+  return store;
 };
 
-const renderWithRouterAndStore = (component, routeConfigs = {}, initialState) => {
+const renderWithRouterAndStore = (
+  component,
+  routeConfigs = {},
+  initialState,
+) => {
   const route = routeConfigs.route || '/';
   const store = getStore(initialState);
   const history = routeConfigs.history

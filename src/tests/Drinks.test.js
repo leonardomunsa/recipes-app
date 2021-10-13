@@ -17,9 +17,7 @@ describe('Testando elementos da tela de bebidas', () => {
   });
 
   it('deve mostrar 12 cards de receitas', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/bebidas');
+    renderWithRouterAndStore(<App />, { route: '/bebidas' });
 
     const allRecipes = await screen.findAllByTestId('recipe-card');
 
@@ -27,9 +25,7 @@ describe('Testando elementos da tela de bebidas', () => {
   });
 
   it('deve mostrar nome, imagem e link de mais detalhes em cada card', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/bebidas');
+    renderWithRouterAndStore(<App />, { route: '/bebidas' });
 
     const firstRecipeName = await screen.findByTestId('0-card-name');
     const firstRecipeImage = await screen.findByTestId('0-card-img');
@@ -43,9 +39,9 @@ describe('Testando elementos da tela de bebidas', () => {
   });
 
   it('ao clicar em Mais detalhes, deve redirecionar para a rota correta', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/bebidas');
+    const { history } = renderWithRouterAndStore(<App />, {
+      route: '/bebidas',
+    });
 
     const firstRecipeLink = await screen.findByTestId('0-recipe-card');
 
@@ -60,9 +56,7 @@ describe('Testando elementos da tela de bebidas', () => {
   });
 
   it('deve mostrar 6 botões de filtro', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/bebidas');
+    renderWithRouterAndStore(<App />, { route: '/bebidas' });
 
     const categoryFiltersContainer = await screen.findByTestId(
       'category-filters',
@@ -75,9 +69,7 @@ describe('Testando elementos da tela de bebidas', () => {
   });
 
   it('deve mostrar as receitas filtradas ao clicar nos botões de filtros', async () => {
-    const { history } = renderWithRouterAndStore(<App />);
-
-    history.push('/bebidas');
+    renderWithRouterAndStore(<App />, { route: '/bebidas' });
 
     const ordinaryDrinkFilter = await screen.findByTestId(
       'Ordinary Drink-category-filter',
