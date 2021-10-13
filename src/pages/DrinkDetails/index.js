@@ -7,6 +7,7 @@ import ShareButton from '../../components/ShareButton';
 import FavoriteButton from '../../components/FavoriteButton';
 
 import getIngredients from '../../utils/getIngredients';
+import { getRecipeById } from '../../services/recipesAPI';
 
 import './style.css';
 
@@ -28,13 +29,8 @@ const DrinkDetails = () => {
 
   useEffect(() => {
     async function getDrink() {
-      const promiseDrinks = await fetch(
-        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`,
-      );
-      const { drinks } = await promiseDrinks.json();
-      const fetchedDrink = drinks[0];
-
-      setDrink(fetchedDrink);
+      const data = await getRecipeById('drinks', id);
+      setDrink(data);
     }
     getDrink();
   }, [id]);

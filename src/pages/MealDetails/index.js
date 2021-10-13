@@ -7,6 +7,7 @@ import ShareButton from '../../components/ShareButton';
 import FavoriteButton from '../../components/FavoriteButton';
 
 import getIngredients from '../../utils/getIngredients';
+import { getRecipeById } from '../../services/recipesAPI';
 
 import './style.css';
 
@@ -28,12 +29,8 @@ const MealDetails = () => {
 
   useEffect(() => {
     async function getMeal() {
-      const promiseMeals = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`,
-      );
-      const { meals } = await promiseMeals.json();
-      const fetchedMeal = meals[0];
-      setMeal(fetchedMeal);
+      const data = await getRecipeById('meals', id);
+      setMeal(data);
     }
     getMeal();
   }, [id]);

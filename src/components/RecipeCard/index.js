@@ -6,7 +6,7 @@ const RecipeCard = ({ id, thumb, name, index }) => {
   const { pathname } = useLocation();
   const location = pathname.includes('comidas') ? '/comidas' : 'bebidas';
   return (
-    <div>
+    <div data-testid="recipe-card">
       <img data-testid={ `${index}-card-img` } src={ thumb } alt={ name } />
       <p data-testid={ `${index}-card-name` }>{name}</p>
       <Link to={ `${location}/${id}` } data-testid={ `${index}-recipe-card` }>

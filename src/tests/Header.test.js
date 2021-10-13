@@ -7,7 +7,7 @@ import App from '../App';
 // import userEvent from '@testing-library/user-event';
 
 import renderWithRouter from './renderWithRouter';
-import { renderWithRouterAndStore } from './renderWithRouterAndStore';
+import renderWithRouterAndStore from './renderWithRouterAndStore';
 
 const BUTTON_PEFIL_TEST_ID = 'profile-top-btn';
 const TITLE_HEADER_TEST_ID = 'page-title';

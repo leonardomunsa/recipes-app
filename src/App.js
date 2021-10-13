@@ -17,10 +17,9 @@ import ExploreDrinks from './pages/ExploreDrinks';
 import Profile from './pages/Profile';
 import FinishedRecipes from './pages/FinishedRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import NotFound from './pages/NotFound';
 
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NotFound from './pages/NotFound';
 
 function App() {
   return (

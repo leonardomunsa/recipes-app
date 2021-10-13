@@ -8,12 +8,25 @@ import { render } from '@testing-library/react';
 
 import reducers from '../redux/reducers';
 
+import { loadState, saveState } from '../utils/localStorageRedux';
+
 export const getStore = (initialState) => {
-  if (!initialState) return createStore(reducers, applyMiddleware(thunk));
-  return createStore(reducers, initialState, applyMiddleware(thunk));
+  const store = initialState
+    ? createStore(reducers, initialState, applyMiddleware(thunk))
+    : createStore(reducers, loadState(), applyMiddleware(thunk));
+
+  store.subscribe(() => {
+    saveState(store.getState());
+  });
+
+  return store;
 };
 
-export const renderWithRouterAndStore = (component, routeConfigs = {}, initialState) => {
+const renderWithRouterAndStore = (
+  component,
+  routeConfigs = {},
+  initialState,
+) => {
   const route = routeConfigs.route || '/';
   const store = getStore(initialState);
   const history = routeConfigs.history
@@ -29,3 +42,5 @@ export const renderWithRouterAndStore = (component, routeConfigs = {}, initialSt
     store,
   };
 };
+
+export default renderWithRouterAndStore;
