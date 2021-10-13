@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import copy from 'clipboard-copy';
+
 import shareIcon from '../../images/shareIcon.svg';
 
 const COPIED_LINK_ALERT_TIME = 3000;
@@ -11,7 +13,7 @@ const ShareButton = ({ type, id, testId }) => {
   function handleShareClick() {
     const link = `${global.location.origin}/${type}/${id}`;
 
-    navigator.clipboard.writeText(link);
+    copy(link);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), COPIED_LINK_ALERT_TIME);
   }

@@ -11,11 +11,15 @@ import renderWithRouterAndStore from './renderWithRouterAndStore';
 const SEARCH_INPUT_TESTID = 'search-input';
 const SEARCH_BUTTON_TESTID = 'search-top-btn';
 const EXEC_SEARCH_BUTTON_TESTID = 'exec-search-btn';
+const RECIPE_NAME_TESTID = '0-card-name';
 const RECIPE_TITLE_ID = 'recipe-title';
+const RECIPES_NOT_FOUND = 'Sinto muito, não encontramos nenhuma'
+  + ' receita para esses filtros.';
 
 describe('Testa funcionalidades da searchbar', () => {
   beforeAll(() => {
     global.fetch = jest.fn(fetchMock);
+    global.alert = jest.fn();
   });
 
   it('quando clicado no botão de pesquisar, deve ser mostrada/escondida', async () => {
@@ -45,10 +49,19 @@ describe('Testa funcionalidades da searchbar', () => {
     const execSearchButton = screen.getByTestId(EXEC_SEARCH_BUTTON_TESTID);
 
     userEvent.click(ingredientRadio);
+    userEvent.type(searchInput, 'xablau');
+    userEvent.click(execSearchButton);
+
+    await waitForElement(() => screen.getByTestId(RECIPE_NAME_TESTID));
+    expect(global.alert).toHaveBeenCalledWith(RECIPES_NOT_FOUND);
+
+    userEvent.click(ingredientRadio);
     userEvent.type(searchInput, 'Chicken');
     userEvent.click(execSearchButton);
 
-    const firstRecipeName = await waitForElement(() => screen.getByTestId('0-card-name'));
+    const firstRecipeName = await waitForElement(() => (
+      screen.getByTestId(RECIPE_NAME_TESTID)
+    ));
 
     expect(firstRecipeName).toHaveTextContent('Brown Stew Chicken');
   });
@@ -65,10 +78,19 @@ describe('Testa funcionalidades da searchbar', () => {
     const execSearchButton = screen.getByTestId(EXEC_SEARCH_BUTTON_TESTID);
 
     userEvent.click(nameRadio);
+    userEvent.type(searchInput, 'xablau');
+    userEvent.click(execSearchButton);
+
+    await waitForElement(() => screen.getByTestId(RECIPE_NAME_TESTID));
+    expect(global.alert).toHaveBeenCalledWith(RECIPES_NOT_FOUND);
+
+    userEvent.click(nameRadio);
     userEvent.type(searchInput, 'Arrabiata');
     userEvent.click(execSearchButton);
 
-    const recipeName = await waitForElement(() => screen.getByTestId(RECIPE_TITLE_ID));
+    const recipeName = await waitForElement(() => (
+      screen.getByTestId(RECIPE_TITLE_ID)
+    ));
 
     expect(recipeName).toHaveTextContent('Spicy Arrabiata Penne');
   });
@@ -85,10 +107,28 @@ describe('Testa funcionalidades da searchbar', () => {
     const execSearchButton = screen.getByTestId(EXEC_SEARCH_BUTTON_TESTID);
 
     userEvent.click(firstLetterRadio);
+    userEvent.type(searchInput, 'xablau');
+    userEvent.click(execSearchButton);
+
+    await waitForElement(() => screen.getByTestId(RECIPE_NAME_TESTID));
+    expect(global.alert).toHaveBeenCalledWith(
+      'Sua busca deve conter somente 1 (um) caracter',
+    );
+
+    userEvent.click(firstLetterRadio);
+    userEvent.type(searchInput, 'ç');
+    userEvent.click(execSearchButton);
+
+    await waitForElement(() => screen.getByTestId(RECIPE_NAME_TESTID));
+    expect(global.alert).toHaveBeenCalledWith(RECIPES_NOT_FOUND);
+
+    userEvent.click(firstLetterRadio);
     userEvent.type(searchInput, 'c');
     userEvent.click(execSearchButton);
 
-    const recipeName = await waitForElement(() => screen.getByTestId(RECIPE_TITLE_ID));
+    const recipeName = await waitForElement(() => (
+      screen.getByTestId(RECIPE_TITLE_ID)
+    ));
 
     expect(recipeName).toHaveTextContent('Corba');
   });
@@ -105,10 +145,19 @@ describe('Testa funcionalidades da searchbar', () => {
     const execSearchButton = screen.getByTestId(EXEC_SEARCH_BUTTON_TESTID);
 
     userEvent.click(ingredientRadio);
+    userEvent.type(searchInput, 'xablau');
+    userEvent.click(execSearchButton);
+
+    await waitForElement(() => screen.getByTestId(RECIPE_NAME_TESTID));
+    expect(global.alert).toHaveBeenCalledWith(RECIPES_NOT_FOUND);
+
+    userEvent.click(ingredientRadio);
     userEvent.type(searchInput, 'Light rum');
     userEvent.click(execSearchButton);
 
-    const firstRecipeName = await waitForElement(() => screen.getByTestId('0-card-name'));
+    const firstRecipeName = await waitForElement(() => (
+      screen.getByTestId(RECIPE_NAME_TESTID)
+    ));
 
     expect(firstRecipeName).toHaveTextContent('151 Florida Bushwacker');
   });
@@ -125,10 +174,19 @@ describe('Testa funcionalidades da searchbar', () => {
     const execSearchButton = screen.getByTestId(EXEC_SEARCH_BUTTON_TESTID);
 
     userEvent.click(nameRadio);
+    userEvent.type(searchInput, 'xablau');
+    userEvent.click(execSearchButton);
+
+    await waitForElement(() => screen.getByTestId(RECIPE_NAME_TESTID));
+    expect(global.alert).toHaveBeenCalledWith(RECIPES_NOT_FOUND);
+
+    userEvent.click(nameRadio);
     userEvent.type(searchInput, 'Aquamarine');
     userEvent.click(execSearchButton);
 
-    const recipeName = await waitForElement(() => screen.getByTestId(RECIPE_TITLE_ID));
+    const recipeName = await waitForElement(() => (
+      screen.getByTestId(RECIPE_TITLE_ID)
+    ));
 
     expect(recipeName).toHaveTextContent('Aquamarine');
   });
@@ -145,10 +203,26 @@ describe('Testa funcionalidades da searchbar', () => {
     const execSearchButton = screen.getByTestId(EXEC_SEARCH_BUTTON_TESTID);
 
     userEvent.click(firstLetterRadio);
+    userEvent.type(searchInput, 'xablau');
+    userEvent.click(execSearchButton);
+
+    expect(global.alert).toHaveBeenCalledWith(
+      'Sua busca deve conter somente 1 (um) caracter',
+    );
+
+    userEvent.click(firstLetterRadio);
+    userEvent.type(searchInput, 'ç');
+    userEvent.click(execSearchButton);
+
+    expect(global.alert).toHaveBeenCalledWith(RECIPES_NOT_FOUND);
+
+    userEvent.click(firstLetterRadio);
     userEvent.type(searchInput, 'g');
     userEvent.click(execSearchButton);
 
-    const recipeName = await waitForElement(() => screen.getByTestId('recipe-title'));
+    const recipeName = await waitForElement(() => (
+      screen.getByTestId('recipe-title')
+    ));
 
     expect(recipeName).toHaveTextContent('GG');
   });
