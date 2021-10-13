@@ -60,7 +60,7 @@ const CategoryFilters = ({ type }) => {
   };
 
   return (
-    <div className="category-filters">
+    <div data-testid="category-filters" className="category-filters">
       <CategoryButton
         category="All"
         type={ type }

@@ -13,7 +13,7 @@ export const getStore = (initialState) => {
   return createStore(reducers, initialState, applyMiddleware(thunk));
 };
 
-export const renderWithRouterAndStore = (component, routeConfigs = {}, initialState) => {
+const renderWithRouterAndStore = (component, routeConfigs = {}, initialState) => {
   const route = routeConfigs.route || '/';
   const store = getStore(initialState);
   const history = routeConfigs.history
@@ -29,3 +29,5 @@ export const renderWithRouterAndStore = (component, routeConfigs = {}, initialSt
     store,
   };
 };
+
+export default renderWithRouterAndStore;
